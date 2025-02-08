@@ -1,0 +1,67 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "converter"         # prefix package names with pb
+version = "0.0.0"                               # versioning is done via git tags
+description = "Python project converter"     # TODO: update description after creating project
+authors = ["Kab Seok Kang"] # TODO: update authors after creating project
+readme = "README.md"                        # path to the README file
+packages = [{include = "converter"}]         # TODO: update source path after creating project
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+pytest-asyncio = "^0.20.1"
+pre-commit = "^2.20.0"
+# pandas-stubs = "^1.5.1.221024"
+# mypy = "^0.991"
+
+[tool.pytest] # pytest config
+ini_options.addopts = "-p no:warnings --cov"
+
+[tool.coverage] # pytest coverage config
+run.source = ["templates/"]
+run.omit = ["**/__init__.py", "**/__main__.py"]
+report.exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "if settings.DEBUG",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if __name__ == .__main__.:"
+]
+
+# [tool.black]
+# line-length = 99
+# target-version = ['py38', 'py310']
+# include = '\.pyi?$'
+# # 'extend-exclude' excludes files or directories in addition to the defaults
+# extend-exclude = '''
+#           \.__pycache__|
+#           \.mypy_cache|
+#           \.tox|
+#           \.venv|
+#           _build|
+#           build|
+#           dist
+#         '''
+# preview = true
+#
+# [tool.mypy]
+# files = "templates/"
+# install_types = "True"
+# non_interactive = "True"
+# strict = "True"
+# implicit_reexport = "True"
+# ignore_missing_imports = "False"
+
+#[tool.flake8]
+# flake8 does not suppport pyporject toml at the time or writing this.
+# please use .flake8 for configuring your flake8 options
